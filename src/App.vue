@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import mainTabBar from "components/content/mainTabBar/mainTabBar.vue";
+import mainTabBar from "components/content/mainTabbar/mainTabBar.vue";
 export default {
   components: {
     mainTabBar,

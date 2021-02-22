@@ -1,1 +1,5 @@
-@import "./normalize.css"
+@import "./normalize.css";
+:root {
+  --color--pink:#ffc0cb;
+  --color--baise:#fff
+}

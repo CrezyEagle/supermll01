@@ -1,24 +1,48 @@
 <template>
   <tob>
-    <tob-bar path="/home" >
-      <img slot="Imga"  src="~assets/img/tabbar/home.png" alt="" >
-     <img  slot="Imgb" src="~assets/img/tabbar/home_activ.png" alt="" >
-      <div slot="Div"><div>首页</div></div>
+    <tob-bar path="/home">
+      <template v-slot:Imga>
+        <img src="~assets/img/tabbar/home.png" alt="" />
+      </template>
+      <template v-slot:Imgb>
+        <img src="~assets/img/tabbar/home_activ.png" alt="" />
+      </template>
+      <template v-slot:Div>
+        <div><div>首页</div></div>
+      </template>
     </tob-bar>
     <tob-bar path="/classify">
-     <img slot="item-icon" src="~assets/img/tabbar/classify.png" alt="">
-      <img slot="item-icon-active" src="~assets/img/tabbar/classify_activ.png" alt="">
-      <div slot="item-text">分类</div>
+      <template v-slot:Imga>
+        <img src="~assets/img/tabbar/classify.png" alt="" />
+      </template>
+      <template v-slot:Imgb>
+        <img src="~assets/img/tabbar/classify_activ.png" alt="" />
+      </template>
+      <template v-slot:Div>
+        <div>分类</div>
+      </template>
     </tob-bar>
-    <tob-bar path="/shopping" >
-      <img slot="Imga" src="~assets/img/tabbar/shopping.png" alt="" />
-      <img slot="Imgb" src="~assets/img/tabbar/shopping_activ.png" alt="" />
-      <div slot="Div">购物车</div>
+    <tob-bar path="/shopping">
+      <template v-slot:Imga>
+        <img src="~assets/img/tabbar/shopping.png" alt="" />
+      </template>
+      <template v-slot:Imgb>
+        <img src="~assets/img/tabbar/shopping_activ.png" alt="" />
+      </template>
+      <template v-slot:Div>
+        <div>购物车</div>
+      </template>
     </tob-bar>
-    <tob-bar path="/files" >
-      <img slot="Imga" src="../../../assets/img/tabbar/Files.png" alt="" />
-      <img slot="Imgb" src="../../../assets/img/tabbar/Files_activ.png" alt="" />
-      <div slot="Div">我的</div>
+    <tob-bar path="/files">
+      <template v-slot:Imga>
+        <img src="../../../assets/img/tabbar/Files.png" alt="" />
+      </template>
+      <template v-slot:Imgb>
+        <img src="../../../assets/img/tabbar/Files_activ.png" alt="" />
+      </template>
+      <template v-slot:Div>
+        <div>我的</div>
+      </template>
     </tob-bar>
   </tob>
 </template>
@@ -35,5 +59,4 @@ export default {
 </script>
 
 <style>
-
 </style>
