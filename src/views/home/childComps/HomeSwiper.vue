@@ -1,0 +1,32 @@
+<template>
+  <div>
+    <swiper>
+      <swiper-item v-for="item in banner1.list" :key="item">
+        <a :href="item.link">
+          <img :src="item.image" alt="" />
+        </a>
+      </swiper-item>
+    </swiper>
+  </div>
+</template>
+
+<script>
+import { Swiper, SwiperItem } from "components/common/swiper/index";
+export default {
+  props: {
+    banner1: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
+  components: {
+    Swiper,
+    SwiperItem,
+  },
+};
+</script>
+
+<style>
+</style>
