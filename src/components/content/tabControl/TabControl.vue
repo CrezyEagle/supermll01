@@ -16,10 +16,13 @@ export default {
   methods:{
     fn(index){
       this.activColor=index
+      this.$emit("itemi",index)
+
     }
   },
 props:{
   tabcon:{
+    
         type: Array,
       default() {
         return [];
@@ -40,6 +43,7 @@ props:{
   line-height: 40px;
    color: #b8b7b7;
    background-color: #fff;
+   z-index: 9;
 }
 .TabControl div{
   flex: 1;
