@@ -19,7 +19,7 @@ name:'Tob'
   bottom: 0;
   left: 0;
   right:0 ;
-  box-shadow: 1px 0px 1px 1px rgba(29, 24, 24, 0.2);
-  background-color: #f5f5f5ec;
+  box-shadow: 2px 0px 1px 1px rgba(98, 86, 86, 0.335);
+  background-color: #f5f5f500;
 }
 </style>

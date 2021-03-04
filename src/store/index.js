@@ -2,9 +2,19 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    ac:10
+    imgload:false
   },
   mutations: {
+    imglodea(state,imgloada){
+      if(state.imgload){
+        state.imgload=false
+      }else{
+        state.imgload=imgloada
+      }
+      
+
+    
+    }
   },
   actions: {
   },

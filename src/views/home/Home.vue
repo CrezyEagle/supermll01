@@ -3,24 +3,42 @@
     <nav-bar class="home-nav" backgroundColro="var(--color--pink)"
       ><template v-slot:center><div>购物街</div></template></nav-bar
     >
-    <home-swiper :banner1="banner"></home-swiper>
-    <recommend-view :recommend="recommend"></recommend-view>
-    <feature-view></feature-view>
-    <tab-control :tabcon="['流行', '新款', '精选']" @itemi="fn"></tab-control>
-    <goods-list :goods="chuanz"></goods-list>
-    <ul>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-      <li>111</li>
-    </ul>
+       <tab-control
+          :tabcon="['流行', '新款', '精选']"
+          @itemi="fn"
+          ref="tabCon3"
+          v-show="tabShow"
+        :class="{tabc:tabShow}"
+        ></tab-control>
+    <scroll
+      class="scroll"
+      ref="scroll"
+      @scrollemit="scrollfn"
+      @pullingUp="loadMore"
+      :pullUpLoad="true"
+    >
+      <template v-slot:contt>
+        <home-swiper :banner1="banner" @imgLoad="imgLoad"></home-swiper>
+        <recommend-view :recommend="recommend"></recommend-view>
+        <feature-view></feature-view>
+        <tab-control
+          :tabcon="['流行', '新款', '精选']"
+          @itemi="fn"
+          ref="tabCon2"
+        
+        ></tab-control>
+
+        <goods-list :goods="chuanz"></goods-list>
+      </template>
+    </scroll>
+    <back-tope @click="backfn()" v-show="isShow"></back-tope>
   </div>
 </template>
 
 <script>
 //网络封装组件
 import { grtHomeMultidata, getHomeGoods } from "network/home.js";
+import { request2 } from "network/request";
 
 //子组件
 import HomeSwiper from "./childComps/HomeSwiper.vue";
@@ -30,7 +48,9 @@ import FeatureView from "./childComps/FeatureView.vue";
 //公共组件
 import TabControl from "components/content/tabControl/TabControl.vue";
 import NavBar from "components/common/navBar/NavBar";
-import GoodsList from "../../components/content/goods/GoodsList.vue";
+import GoodsList from "components/content/goods/GoodsList.vue";
+import Scroll from "components/common/scroll/scroll.vue";
+import BackTope from "components/content/backTop/BackTope.vue";
 export default {
   data() {
     return {
@@ -42,25 +62,39 @@ export default {
         sell: { page: 0, list: [] },
       },
       crte: 0,
+      isShow: false,
+      tabShow:false,
+      timer: null,
+      tabcon:0
     };
   },
   components: {
-    NavBar,
     HomeSwiper,
     RecommendView,
     FeatureView,
     TabControl,
+    NavBar,
     GoodsList,
+    Scroll,
+    BackTope,
+  },
+  watch: {
+    imgload: function (a, b) {
+      this.debounce(this.$refs.scroll.refresh, 500);
+    },
+  },
+  mounted(){
+   
   },
   created() {
-    
+    //网络请求
     this.grtHomeMultidata();
     this.getHomeGoods("pop");
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
   },
   methods: {
-    //网络请求
+    //网络封装
     grtHomeMultidata() {
       grtHomeMultidata().then((res) => {
         this.banner = res.data.banner;
@@ -76,14 +110,44 @@ export default {
         console.log(this.goods[type]);
       });
     },
-    
-    //传值
+    //goods-list传值
     fn(index) {
+      this.$refs.tabCon2.activColor=index
+      this.$refs.tabCon3.activColor=index
       this.crte = index;
-      console.log(thiscrte);
     },
+    //通过ref父访问子调用scroll组件里的scrollTo方法
+    backfn() {
+      this.$refs.scroll.scrollTo(0, 0);
+    },
+    //通过自定义事件得到scroll传过来的坐标
+    scrollfn(a) {
+      //坐标大于800显示
+      this.isShow = -a.y > 800;
+      this.tabShow=-a.y>this.tabcon
+    },
+    loadMore() {
+      console.log(this.chuanz2(this.crte));
+      this.getHomeGoods(this.chuanz2(this.crte));
+      //重新计算可滚动的区域
+    },
+    //防抖函数
+    debounce(fun, delay) {
+      if (this.timer) clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        console.log("---");
+        fun.call(this);
+      }, delay);
+    },
+    imgLoad(){
+      this.tabcon=this.$refs.tabCon2.$el.offsetTop
+    }
   },
   computed: {
+    imgload() {
+      return this.$store.state.imgload;
+    },
+    //goods-list传值
     chuanz() {
       if (this.crte == 0) {
         return this.goods.pop.list;
@@ -93,16 +157,33 @@ export default {
         return this.goods.sell.list;
       }
     },
+    chuanz2() {
+      return function (index) {
+        if (index == 0) {
+          return "pop";
+        } else if (index == 1) {
+          return "new";
+        } else if (index == 2) {
+          return "sell";
+        }
+      };
+    },
   },
 };
 </script>
 
 <style>
+
 .home-nav {
   background-color: var(--color--pink);
   color: var(--color--baise);
   position: sticky;
   top: 0;
   z-index: 9;
+}
+.tabc{
+  position: absolute;
+  z-index: 11;
+  top: 44px;
 }
 </style>

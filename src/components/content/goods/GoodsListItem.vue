@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item">
-    <img :src="goodsitem.show.img" alt="">
+    <img :src="goodsitem.show.img" alt="" @load="imgload()">
     <div class="goods-info">
       <p>{{goodsitem.title}}</p>
       <span class="price">{{goodsitem.price}}</span>
@@ -11,6 +11,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      imgloada:true
+    }
+  },
 props:{
   goodsitem: {
       type: Object,
@@ -18,6 +23,12 @@ props:{
         return [];
       },
     },
+},
+methods:{
+  imgload(){
+    this.$store.commit('imglodea',this.imgloada)
+
+  }
 }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="TabControl">
-    <div v-for="(item,index) in tabcon" :key="index" :class="{activ:index===activColor}" @click='fn(index)'>
+    <div v-for="(item,index) in tabcon" :key="index" :class="{activ:index===activColor}" @click='ff(index)'>
       <span>{{item}}</span>
     </div>
   </div>
@@ -14,7 +14,7 @@ export default {
     }
   },
   methods:{
-    fn(index){
+    ff(index){
       this.activColor=index
       this.$emit("itemi",index)
 
@@ -34,7 +34,7 @@ props:{
 
 <style>
 .TabControl{
-  position: sticky;
+z-index: 10;
   top: 44px;
   display: flex;
   width: 100%;
@@ -43,7 +43,7 @@ props:{
   line-height: 40px;
    color: #b8b7b7;
    background-color: #fff;
-   z-index: 9;
+
 }
 .TabControl div{
   flex: 1;
