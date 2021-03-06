@@ -20,9 +20,9 @@ export default {
   },
   props: {
     banner1: {
-      type: Array,
+      type: Object,
       default() {
-        return [];
+        return {};
       },
     },
   },

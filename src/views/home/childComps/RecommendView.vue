@@ -16,9 +16,9 @@ export default {
   },
   props: {
     recommend: {
-      type: Array,
+      type: Object,
       default() {
-        return [];
+        return {};
       },
     },
   },

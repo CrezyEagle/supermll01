@@ -1,5 +1,5 @@
 <template>
-  <div @click="fnb">
+  <div @click="fnb" key="Files">
     <h2>我的</h2>
   </div>
 </template>

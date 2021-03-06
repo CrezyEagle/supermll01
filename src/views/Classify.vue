@@ -1,5 +1,5 @@
 <template>
- <div class="classify">
+ <div class="classify" key="classify">
    <ul>
      <li>11</li>
      <li>12</li>

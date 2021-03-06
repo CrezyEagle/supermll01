@@ -54,8 +54,8 @@ import BackTope from "components/content/backTop/BackTope.vue";
 export default {
   data() {
     return {
-      banner: [],
-      recommend: [],
+      banner: {},
+      recommend: {},
       goods: {
         pop: { page: 0, list: [] },
         new: { page: 0, list: [] },
@@ -65,7 +65,8 @@ export default {
       isShow: false,
       tabShow:false,
       timer: null,
-      tabcon:0
+      tabcon:0,
+      deactivatedTop:0
     };
   },
   components: {
@@ -83,9 +84,16 @@ export default {
       this.debounce(this.$refs.scroll.refresh, 500);
     },
   },
-  mounted(){
-   
+  activated() {
+    //打开组件自动滑动到所记录的位置
+    this.$refs.scroll.scrollTo(0,this.deactivatedTop)
+    this.$refs.scroll.refresh()
   },
+ deactivated() {
+   //离开组件，记录下当前滑动到的位置
+   console.log(this.$refs.scroll.bscroll.y);
+   this.deactivatedTop=this.$refs.scroll.bscroll.y
+ },
   created() {
     //网络请求
     this.grtHomeMultidata();
@@ -107,7 +115,6 @@ export default {
       getHomeGoods(type, page).then((res) => {
         this.goods[type].page = res.data.page;
         this.goods[type].list.push(...res.data.list);
-        console.log(this.goods[type]);
       });
     },
     //goods-list传值

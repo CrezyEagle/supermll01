@@ -16,6 +16,7 @@ export default {
 <style>
 .navbar {
   display: flex;
+  width: 100%;
   text-align: center;
   height: 44px;
   box-shadow: 1px 0px 1px 1px rgba(0, 0, 0, 0.2);
@@ -26,6 +27,8 @@ export default {
   width: 60px;
 }
 .center {
+  display: flex;
+  justify-content: center;
   flex: 1;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div key="Shoppig">
     <h2>
       购物车
     </h2>

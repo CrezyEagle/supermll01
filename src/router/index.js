@@ -3,7 +3,7 @@ const Home =()=>import("../views/home/Home.vue")
 const Classify =()=>import("../views/Classify.vue")
 const Shopping =()=>import("../views/Shopping.vue")
 const Files =()=>import("../views/Files.vue")
-
+const Detail =()=>import("../views/detie/detail.vue")
 const routes = [
   {
     path:'',
@@ -37,6 +37,13 @@ const routes = [
     meta:{
       title:"购物车"
     }
+  },
+    {
+      path: '/detail',
+      component:Detail,
+      meta:{
+        title:"详情"
+      }
   }
 ]
 

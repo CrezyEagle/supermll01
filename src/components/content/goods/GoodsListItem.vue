@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-item">
+  <div class="goods-item" @click="goodsciclk()">
     <img :src="goodsitem.show.img" alt="" @load="imgload()">
     <div class="goods-info">
       <p>{{goodsitem.title}}</p>
@@ -28,6 +28,15 @@ methods:{
   imgload(){
     this.$store.commit('imglodea',this.imgloada)
 
+  },
+  goodsciclk(){
+    //点击了商品后跳转到相应的详情页面
+    this.$router.push({
+      path:'/detail',
+      query:{
+        id:this.goodsitem.iid
+      }
+    })
   }
 }
 }
