@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item" @click="goodsciclk()">
-    <img :src="goodsitem.show.img" alt="" @load="imgload()">
+    <img :src="pand" alt="" @load="imgload()">
     <div class="goods-info">
       <p>{{goodsitem.title}}</p>
       <span class="price">{{goodsitem.price}}</span>
@@ -23,6 +23,11 @@ props:{
         return [];
       },
     },
+},
+computed:{
+  pand(){
+    return this.goodsitem.image||this.goodsitem.show.img
+  }
 },
 methods:{
   imgload(){

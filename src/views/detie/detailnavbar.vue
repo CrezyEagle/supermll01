@@ -41,7 +41,7 @@ export default {
       this.activindex = index;
     },
     imgClick(){
-      console.log(1111);
+      console.log("返回");
       this.$router.go(-1)
     }
   },

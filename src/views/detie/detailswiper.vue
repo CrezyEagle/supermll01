@@ -1,5 +1,5 @@
 <template>
-    <swiper class="sw" >
+    <swiper class="sw" v-if="swiper!==[]">
       <swiper-item  v-for="item in swiper" :key="item" >
           <img :src="item" alt="" class="tp">
       </swiper-item>
@@ -25,7 +25,7 @@ export default {
 
 <style scoped>
 .sw{
-  height: 300px;
+  height: 400px;
   overflow: hidden;
 }
 .tp{

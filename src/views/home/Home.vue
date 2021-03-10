@@ -80,8 +80,10 @@ export default {
     BackTope,
   },
   watch: {
+    
     imgload: function (a, b) {
-      this.debounce(this.$refs.scroll.refresh, 500);
+      this.$refs.scroll.refresh()
+      this.debounce(this.$refs.scroll.refresh, 50);
     },
   },
   activated() {
@@ -91,7 +93,7 @@ export default {
   },
  deactivated() {
    //离开组件，记录下当前滑动到的位置
-   console.log(this.$refs.scroll.bscroll.y);
+  //  console.log(this.$refs.scroll.bscroll.y);
    this.deactivatedTop=this.$refs.scroll.bscroll.y
  },
   created() {
@@ -134,9 +136,9 @@ export default {
       this.tabShow=-a.y>this.tabcon
     },
     loadMore() {
-      console.log(this.chuanz2(this.crte));
+      console.log(this.chuanz2(this.crte)+"追加数据");
       this.getHomeGoods(this.chuanz2(this.crte));
-      //重新计算可滚动的区域
+      //下拉加载更多时，给当前的goods追加数据
     },
     //防抖函数
     debounce(fun, delay) {
@@ -151,6 +153,7 @@ export default {
     }
   },
   computed: {
+    
     imgload() {
       return this.$store.state.imgload;
     },
@@ -192,5 +195,8 @@ export default {
   position: absolute;
   z-index: 11;
   top: 44px;
+}
+#Home{
+  height: 100vh;
 }
 </style>
