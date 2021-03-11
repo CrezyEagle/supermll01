@@ -8,6 +8,7 @@
         <detail-sjia :shop="shop"></detail-sjia>
         <detail-info :detailInfo="detailInfo" @imgaeLode="imgaeLode"></detail-info>
         <param-info :paramInfo='paramInfo'></param-info>
+        <comment-info :commentInfo="commentInfo"></comment-info>
         <goods-list :goods="recommend"></goods-list>
       </template>
     </scroll>
@@ -21,12 +22,14 @@ import detailBaec from "./detailBaec";
 import detailSjia from "./detiesjia";
 import DetailInfo from './detailInfo.vue';
 import ParamInfo from './paramInfo.vue'
+import GoodsList from 'components/content/goods/GoodsList.vue';
+import CommentInfo from './commentInfo.vue'
 
 import Scroll from "components/common/scroll/scroll.vue";
 
 import { getDetail } from "network/home.js";
 import { Goods, Shop,GoodsParam,getRecommend } from "network/detail.js";
-import GoodsList from 'components/content/goods/GoodsList.vue';
+
 
 
 export default {
@@ -38,7 +41,8 @@ export default {
       recommend:[],
       shop: {},
       detailInfo:{},
-      paramInfo:{}
+      paramInfo:{},
+      commentInfo:{}
     };
   },
   components: {
@@ -49,7 +53,8 @@ export default {
     Scroll,
     DetailInfo,
     ParamInfo,
-    GoodsList
+    GoodsList,
+    CommentInfo
   },
   methods:{
     imgaeLode(){
@@ -77,9 +82,16 @@ export default {
         data.columns,
         data.shopInfo.services
       );
+      //店铺信息
       this.shop = new Shop(data.shopInfo);
+      //详情数据
       this.detailInfo=data.detailInfo;
+      //商品参数
       this.paramInfo=new GoodsParam(data.itemParams.info,data.itemParams.rule)
+      //评论数据
+
+      data.rate? this.commentInfo=data.rate.list:console.log("无评论信息");
+
     });
   },
 };
