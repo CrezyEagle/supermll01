@@ -31,8 +31,13 @@ computed:{
 },
 methods:{
   imgload(){
-    this.$store.commit('imglodea',this.imgloada)
-
+    if(!this.$route.path.indexOf("/home")){
+      //判断是否是home页面在活跃
+       this.$store.commit('imglodea',this.imgloada)
+    }else if(!this.$route.path.indexOf("/detail")){
+      //判断是否是detail页面活跃
+      this.$store.commit('detailImglodea',this.imgloada)
+    }
   },
   goodsciclk(){
     //点击了商品后跳转到相应的详情页面

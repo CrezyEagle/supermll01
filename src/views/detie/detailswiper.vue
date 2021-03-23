@@ -1,4 +1,5 @@
 <template>
+<!-- 详情轮播图 -->
     <swiper class="sw" v-if="swiper!==[]">
       <swiper-item  v-for="item in swiper" :key="item" >
           <img :src="item" alt="" class="tp">

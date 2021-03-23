@@ -1,5 +1,6 @@
 <template>
   <div v-if="Object.keys(paramInfo).length !== 0" class="parm">
+    <!-- 商品参数 -->
     <table v-for="(item, index) in paramInfo.sizes" :key="index" class="tab1">
       <tr v-for="tritem in item" :key="tritem" class="tr1">
         <td  class="td1" v-for="tditem in tritem" :key="tditem">{{ tditem }}</td>
@@ -13,7 +14,7 @@
       </tr>
     </table>
     <div v-if="paramInfo.image.length!==0">
-      <img :src="paramInfo.image" alt="">
+      <img class="imga" :src="paramInfo.image" alt="">
     </div>
   </div>
 </template>
@@ -44,6 +45,9 @@ export default {
   padding: 0px 10px;
   width: 100%;
 
+}
+.imga{
+  width: 100%;
 }
 .tab2{
   padding: 0px 10px;

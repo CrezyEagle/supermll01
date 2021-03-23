@@ -1,19 +1,14 @@
 <template>
-  <div @click="fnb" key="Files">
-    <h2>我的</h2>
-  </div>
+  <toast></toast>
 </template>
 
 <script>
+import toast from '../components/common/toast/toast.vue'
 export default {
-methods:{
-  fnb(){
-    console.log(11111);
-  }
-}
+  components: { toast },
+
 }
 </script>
 
 <style>
-
 </style>

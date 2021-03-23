@@ -1,4 +1,5 @@
 <template>
+<!-- 商品介绍 -->
   <div class="besc" v-if="Object.keys(goods).length !==0">
     <div class="title">{{ goods.title }}</div>
     <div class="qian">

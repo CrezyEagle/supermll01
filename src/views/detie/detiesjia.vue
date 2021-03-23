@@ -1,4 +1,5 @@
 <template>
+<!-- 商家信息 -->
   <div class="detailsjia">
     <div class="sjia">
       <img class="imga" :src="shop.logo" alt="" /><span class="name">{{

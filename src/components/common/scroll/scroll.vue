@@ -26,7 +26,7 @@ export default {
     this.bscroll = new Bs(this.$refs.scroll, {
       usetransition: false,
       pullUpLoad: this.pullUpLoad,
-      probeType: 0,
+      probeType: 3,
       click: true,
     });
    

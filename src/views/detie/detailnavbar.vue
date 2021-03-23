@@ -39,6 +39,7 @@ export default {
   methods: {
     activcolor(index) {
       this.activindex = index;
+      this.$emit("navbarclick",index)
     },
     imgClick(){
       console.log("返回");

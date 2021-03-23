@@ -1,4 +1,5 @@
 <template>
+<!-- 商品图片 -->
   <div  v-if="Object.keys(detailInfo).length !==0" class="detailInfo">
     <div class="desc">
       <div class="xian1">
